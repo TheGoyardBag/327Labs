@@ -1,0 +1,73 @@
+/* Base styles for the entire page */
+body {
+    background-color: var(--color-background-page);
+    color: var(--color-text);
+    font-family: var(--font-family-body);
+  }
+  
+  body.dark-mode {
+    background-color: var(--color-background-page-dark);
+    color: var(--color-text-dark);
+    transition: all 0.5s; /* Smooth transition */
+  }
+  
+  /* Layout for card container */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Style for individual cards */
+  .card {
+    border: 1px solid var(--color-text);
+    padding: 10px;
+    background-color: var(--color-background-card);
+    text-align: center;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Image styling for cards */
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  /* Heading styling for cards */
+  .card h2 {
+    font-size: var(--font-size-large);
+    font-family: var(--font-family-display);
+  }
+  
+  /* Link styling for cards */
+  .card a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+  
+  .card a:hover {
+    text-decoration: underline;
+    color: var(--color-link-hover);
+  }
+  
+  /* Dark mode styles for cards */
+  body.dark-mode .card {
+    border: 1px solid var(--color-text);
+    background-color: var(--color-background-card-dark);
+  }
+  
+  body.dark-mode .card a {
+    color: var(--color-link);
+  }
+  
+  body.dark-mode .card a:hover {
+    color: var(--color-link-hover-dark);
+  }
+  

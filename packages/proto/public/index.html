@@ -1,19 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- CSS Reset and Design Tokens -->
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
+    
+    <!-- Web Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:700&display=swap" />
+    
+    <!-- Import the JavaScript for Web Component -->
+    <script type="module" src="/js/dropdownmenu.js"></script> <!-- Import Web Component -->
+
+    <!-- JavaScript Functions for Dynamic Content and Mode Switch -->
+    <script>
+    function loadContent(url, container) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                container.innerHTML = data;
+            })
+            .catch(error => {
+                console.error("Error loading content:", error);
+            });
+    }
+
+    function switchToDarkMode() {
+        document.body.classList.add("dark-mode");
+    }
+
+    function switchToLightMode() {
+        document.body.classList.remove("dark-mode");
+    }
+    </script>
+    
     <title>Basketball 5v5 Reservation App</title>
 </head>
 <body>
-    <h1>Welcome to the Basketball 5v5 Reservation App</h1>
-    <h2>Navigate to:</h2>
-    <ul>
-        <li><a href="game.html">Game Details</a></li>
-        <li><a href="team1.html">Team Details</a></li>
-        <li><a href="player1.html">Player Details</a></li>
-        <li><a href="reservation.html">Reservation Details</a></li>
-        <li><a href="court.html">Court Details</a></li>
-        <li><a href="timeslot.html">Time Slot Details</a></li>
-    </ul>
+    <header>
+        <h1>Basketball 5v5 Reservation App</h1>
+        <div>
+            <button onclick="switchToLightMode()">Light Mode</button>
+            <button onclick="switchToDarkMode()">Dark Mode</button>
+            
+            <!-- Web Component: Dropdown Menu -->
+            <dropdown-menu>
+              <a href="game.html">Game</a>
+              <a href="team1.html">Team</a>
+              <a href="player1.html">Player</a>
+              <a href="reservation.html">Reservation</a>
+              <a href="court.html">Court</a>
+              <a href="timeslot.html">Time Slot</a>
+            </dropdown-menu>
+        </div>
+    </header>
+    
+    <div class="cards">
+        <!-- Card for Game with Dynamic Loading -->
+        <div class="card">
+            <img src="/images/game.jpg" alt="Game" />
+            <h2>Game</h2>
+            <p>Details about the game</p>
+            <button onclick="loadContent('game.html', document.getElementById('game-details'))">
+                View Game Info
+            </button>
+            <div id="game-details"></div>
+        </div>
+
+        <!-- Card for Team with Dynamic Loading -->
+        <div class="card">
+            <img src="/images/team.jpg" alt="Team" />
+            <h2>Team</h2>
+            <p>Details about the team</p>
+            <button onclick="loadContent('team1.html', document.getElementById('team-details'))">
+                View Team Info
+            </button>
+            <div id="team-details"></div>
+        </div>
+
+        <!-- Card for Player with Dynamic Loading -->
+        <div class="card">
+            <img src="/images/player.jpg" alt="Player" />
+            <h2>Player</h2>
+            <p>Details about the player</p>
+            <button onclick="loadContent('player1.html', document.getElementById('player-details'))">
+                View Player Info
+            </button>
+            <div id="player-details"></div>
+        </div>
+
+        <!-- Card for Reservation with Dynamic Loading -->
+        <div class="card">
+            <img src="/images/reservation.jpg" alt="Reservation" />
+            <h2>Reservation</h2>
+            <p>Information about reservations</p>
+            <button onclick="loadContent('reservation.html', document.getElementById('reservation-details'))">
+                View Reservation Info
+            </button>
+            <div id="reservation-details"></div>
+        </div>
+
+        <!-- Card for Court with Dynamic Loading -->
+        <div class="card">
+            <img src="/images/court.jpg" alt="Court" />
+            <h2>Court</h2>
+            <p>Information about the court</p>
+            <button onclick="loadContent('court.html', document.getElementById('court-details'))">
+                View Court Info
+            </button>
+            <div id="court-details"></div>
+        </div>
+
+        <!-- Card for Time Slot with Dynamic Loading -->
+        <div class="card">
+            <img src="/images/timeslot.jpg" alt="Time Slot" />
+            <h2>Time Slot</h2>
+            <p>Details about the time slot</p>
+            <button onclick="loadContent('timeslot.html', document.getElementById('timeslot-details'))">
+                View Time Slot Info
+            </button>
+            <div id="timeslot-details"></div>
+        </div>
+    </div>
 </body>
 </html>
